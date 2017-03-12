@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/mxiao6/Tadpoles/master/res/Title_picture.jpg">
+<img src="https://raw.githubusercontent.com/mxiao6/Tadpoles/master/res/Title_picture.jpg" width="500px">
 
 # The Story of Tadpoles
 
