@@ -2,7 +2,7 @@
 
 # The Story of Tadpoles
 
-An classic Chinese cartoon is revitalized with Virtual Reality, and viewers will experience virtual interactions using new technology.
+A classic Chinese cartoon revitalized with Virtual Reality. Viewers will experience virtual interactions using new technology.
 
 ## Team Members
 Ke Lu <br>
