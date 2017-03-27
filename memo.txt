@@ -1,0 +1,19 @@
+Book open effect, enter the page, like entering a gate. 
+frog jumps around to change altitude
+lotus pond (with lotus, lotus leaves, and frog)
+tadpoles are born and go away
+3x scenes: three pair of animals tell tadpoles the features of their mother
+(chicken, fish, and turtle)
+
+frog goes back to pond, searching for tadpoles
+tadpoles find their mother
+tadpoles grow up and their appearance resemble their mother
+
+------
+
+2 prototypes of frog (static, jumping).
+tadpoles move in a cirle with scenes changing around them.
+
+------
+ref:
+http://www.tudou.com/programs/view/9frdzRGePps
