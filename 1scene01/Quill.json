@@ -1,0 +1,260 @@
+{
+
+    "Version" : 1,
+    "Sequence" : {
+        "BackgroundColor" : [0.195011,0.195241,0.191864],
+        "HomePosition" : [1.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,1.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,1.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,0.0000000000000000e+00,1.0000000000000000e+00],
+        "TrackingOrigin" : 1,
+        "RootLayer" : {
+            "Name" : "Root",
+            "Visible" : true,
+            "Locked" : false,
+            "Collapsed" : false,
+            "BBoxVisible" : false,
+            "Opacity" : 1.000000,
+            "Type" : "Group",
+            "Transform" : [4.147089,0.218253,2.789347,-0.503829,0.872194,4.638025,-1.659641,-3.478829,-2.658459,1.862108,3.806771,-11.553589,0.000000,0.000000,0.000000,1.000000],
+            "AnimOffset" : 0.0000000000000000e+00,
+            "Implementation" : {
+                "Children" : [
+                    {
+                        "Name" : "NewGroup1",
+                        "Visible" : true,
+                        "Locked" : false,
+                        "Collapsed" : true,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Group",
+                        "Transform" : [1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "Children" : [
+                                {
+                                    "Name" : "NewLayer4",
+                                    "Visible" : true,
+                                    "Locked" : false,
+                                    "Collapsed" : false,
+                                    "BBoxVisible" : false,
+                                    "Opacity" : 1.000000,
+                                    "Type" : "Paint",
+                                    "Transform" : [1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                                    "AnimOffset" : 0.0000000000000000e+00,
+                                    "Implementation" : {
+                                        "BoundingBox" : [0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
+                                        "AnimSpeed" : 125.000000,
+                                        "PlaybackReduce" : 1,
+                                        "DataFileOffset" : "8"
+                                    }
+                                },
+                                {
+                                    "Name" : "NewLayer3",
+                                    "Visible" : true,
+                                    "Locked" : false,
+                                    "Collapsed" : false,
+                                    "BBoxVisible" : false,
+                                    "Opacity" : 1.000000,
+                                    "Type" : "Paint",
+                                    "Transform" : [1.000000,0.000000,0.000000,0.000000,-0.000000,1.000000,-0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                                    "AnimOffset" : 0.0000000000000000e+00,
+                                    "Implementation" : {
+                                        "BoundingBox" : [-0.843136,-0.811749,-0.699582,-0.675180,0.681432,0.691197],
+                                        "AnimSpeed" : 125.000000,
+                                        "PlaybackReduce" : 1,
+                                        "DataFileOffset" : "c"
+                                    }
+                                },
+                                {
+                                    "Name" : "oldman",
+                                    "Visible" : true,
+                                    "Locked" : false,
+                                    "Collapsed" : false,
+                                    "BBoxVisible" : false,
+                                    "Opacity" : 1.000000,
+                                    "Type" : "Paint",
+                                    "Transform" : [0.394764,0.396272,0.265300,-1.018742,-0.336070,0.475525,-0.210213,-0.492835,-0.338340,-0.009974,0.518346,-0.288839,0.000000,0.000000,0.000000,1.000000],
+                                    "AnimOffset" : 0.0000000000000000e+00,
+                                    "Implementation" : {
+                                        "BoundingBox" : [-1.016608,-0.626057,-0.808681,-0.424272,0.357205,0.590416],
+                                        "AnimSpeed" : 125.000000,
+                                        "PlaybackReduce" : 1,
+                                        "DataFileOffset" : "2d8"
+                                    }
+                                },
+                                {
+                                    "Name" : "NewLayer2",
+                                    "Visible" : true,
+                                    "Locked" : false,
+                                    "Collapsed" : false,
+                                    "BBoxVisible" : false,
+                                    "Opacity" : 1.000000,
+                                    "Type" : "Paint",
+                                    "Transform" : [1.220293,0.570566,0.058709,-0.272486,-0.545965,1.113125,0.530088,-0.393024,0.175843,-0.503504,1.238417,0.081687,0.000000,0.000000,0.000000,1.000000],
+                                    "AnimOffset" : 0.0000000000000000e+00,
+                                    "Implementation" : {
+                                        "BoundingBox" : [-1.240910,-0.732233,-0.819995,-0.570570,-0.431245,0.331816],
+                                        "AnimSpeed" : 125.000000,
+                                        "PlaybackReduce" : 1,
+                                        "DataFileOffset" : "1cd34"
+                                    }
+                                },
+                                {
+                                    "Name" : "NewLayer1",
+                                    "Visible" : false,
+                                    "Locked" : false,
+                                    "Collapsed" : false,
+                                    "BBoxVisible" : false,
+                                    "Opacity" : 1.000000,
+                                    "Type" : "Paint",
+                                    "Transform" : [0.834902,0.093314,0.542432,0.631664,0.023441,0.978601,-0.204428,-0.245247,-0.549900,0.183392,0.814848,-0.239838,0.000000,0.000000,0.000000,1.000000],
+                                    "AnimOffset" : 0.0000000000000000e+00,
+                                    "Implementation" : {
+                                        "BoundingBox" : [-1.421571,-0.024059,-0.510333,0.427119,-1.484639,0.545204],
+                                        "AnimSpeed" : 125.000000,
+                                        "PlaybackReduce" : 1,
+                                        "DataFileOffset" : "26f78"
+                                    }
+                                },
+                                {
+                                    "Name" : "Paint",
+                                    "Visible" : true,
+                                    "Locked" : false,
+                                    "Collapsed" : false,
+                                    "BBoxVisible" : false,
+                                    "Opacity" : 1.000000,
+                                    "Type" : "Paint",
+                                    "Transform" : [0.942432,-0.327109,-0.069444,0.002993,0.282077,0.889175,-0.360278,0.015334,0.179598,0.319949,0.930256,-0.098651,0.000000,0.000000,0.000000,1.000000],
+                                    "AnimOffset" : 0.0000000000000000e+00,
+                                    "Implementation" : {
+                                        "BoundingBox" : [0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
+                                        "AnimSpeed" : 125.000000,
+                                        "PlaybackReduce" : 1,
+                                        "DataFileOffset" : "48a74"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer7",
+                        "Visible" : true,
+                        "Locked" : false,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [-0.911497,-0.047067,-0.115587,0.150732,-1.167727,0.236288],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "48a78"
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer8",
+                        "Visible" : true,
+                        "Locked" : false,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [-7.766843,1.331856,-0.984014,7.056106,-4.045241,8.221823],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "67a1c"
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer6",
+                        "Visible" : false,
+                        "Locked" : false,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [-0.761098,0.140523,-0.473917,0.401756,-1.519556,-0.301485],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "dcdc0"
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer5",
+                        "Visible" : false,
+                        "Locked" : false,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [1.000000,0.000000,0.000000,0.000000,-0.000000,1.000000,-0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [-0.661511,0.202796,-0.231296,0.401126,-1.275026,-0.339215],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "15ab1c"
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer12",
+                        "Visible" : false,
+                        "Locked" : false,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [0.188141,0.639301,-1.130874,-0.576192,-1.170547,-0.340898],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "195820"
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer11",
+                        "Visible" : true,
+                        "Locked" : false,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [0.126432,0.038879,0.053635,-1.395614,-0.052979,0.128723,0.031578,-0.341443,-0.039768,-0.047878,0.128451,0.159386,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [-1.296439,0.116520,-2.418546,-0.674405,-1.632227,-0.529232],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "1c48bc"
+                        }
+                    },
+                    {
+                        "Name" : "NewLayer10",
+                        "Visible" : true,
+                        "Locked" : true,
+                        "Collapsed" : false,
+                        "BBoxVisible" : false,
+                        "Opacity" : 1.000000,
+                        "Type" : "Paint",
+                        "Transform" : [1.305282,-0.619681,-0.185472,0.559826,0.575157,1.303015,-0.305792,0.746000,0.295975,0.200765,1.412182,-0.904794,0.000000,0.000000,0.000000,1.000000],
+                        "AnimOffset" : 0.0000000000000000e+00,
+                        "Implementation" : {
+                            "BoundingBox" : [-0.921723,-0.038768,0.129328,0.344829,1.023860,1.901468],
+                            "AnimSpeed" : 125.000000,
+                            "PlaybackReduce" : 1,
+                            "DataFileOffset" : "29d888"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
