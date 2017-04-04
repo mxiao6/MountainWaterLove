@@ -2,7 +2,7 @@
 # @Author: Luke
 # @Date:   2017-04-01 21:13:20
 # @Last Modified by:   Luke
-# @Last Modified time: 2017-04-02 02:55:58
+# @Last Modified time: 2017-04-02 04:03:04
 import bpy
 import sys
 import os
@@ -24,7 +24,7 @@ class cellularAutomaton:
 
     def populateCells(self):
         for i in range(len(self.connectivityInfo)):
-            cell = cellWaterTower.cellWaterTower(1000,100,i)
+            cell = cellWaterTower.cellWaterTower(10000,100,i)
             self.cells[i] = cell
 
     def setCell(self, index, bottom, capacity, ink, water):
@@ -155,7 +155,7 @@ class cellularAutomaton:
 def main():
     automaton = cellularAutomaton()
     automaton.populateCells()
-    for i in range(200):
+    for i in range(1000):
         automaton.setCell(0, 10000, 100, 1000, 5000)
         automaton.waterPropagate(automaton.cells[0])
         automaton.inkPropagate(automaton.cells[0])
