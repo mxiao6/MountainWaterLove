@@ -73,18 +73,51 @@ def genOrder(beginningIndex):
     marked_edges_1 = []
     grid = {}
     result = []
+    depthDict = {}
     for i in range(1, len(mesh.vertices)):
         current = {}
         marked_edges_2 = []
         findConnectedVerts(beginningIndex, mesh, current, marked_edges_2, maxdepth=i)
         # print(",".join([str(v) for v in current.keys()]))
 
+        depthDict[i] = [x for x in current if x not in previous]
         temp = [x for x in current if x not in previous]
         result = result + temp
         previous = current
+        if(len(result) == len(mesh.vertices)):
+            break
+
+    del depthDict[len(depthDict)]
+    depthDict[0] = [beginningIndex]
+    # print(depthDict)
     return [beginningIndex]+result[:-1]
 
 # genOrder(0)
 
 # print(gridGen())
 
+def genDepth(beginningIndex):
+    mesh = bpy.context.object.data
+
+    previous = {}
+    marked_edges_1 = []
+    grid = {}
+    result = []
+    depthDict = {}
+    for i in range(1, len(mesh.vertices)):
+        current = {}
+        marked_edges_2 = []
+        findConnectedVerts(beginningIndex, mesh, current, marked_edges_2, maxdepth=i)
+        # print(",".join([str(v) for v in current.keys()]))
+
+        depthDict[i] = [x for x in current if x not in previous]
+        temp = [x for x in current if x not in previous]
+        result = result + temp
+        previous = current
+        if(len(result) == len(mesh.vertices)):
+            break
+
+    del depthDict[len(depthDict)]
+    depthDict[0] = [beginningIndex]
+    # print(depthDict)
+    return depthDict

@@ -8,6 +8,7 @@ import sys
 import os
 
 dir = os.path.dirname(bpy.data.filepath)
+
 if not dir in sys.path:
     sys.path.append(dir)
 
@@ -19,12 +20,12 @@ class cellularAutomaton:
     def __init__(self):
         self.connectivityInfo = utilConnectivity.gridGen()
         self.cells = {}
-        self.flowCoeff = 0.5
+        self.flowCoeff = 0.2
         self.diffusionCoeff = 0.0
 
     def populateCells(self):
         for i in range(len(self.connectivityInfo)):
-            cell = cellWaterTower.cellWaterTower(10000,100,i)
+            cell = cellWaterTower.cellWaterTower(10000, 100, i)
             self.cells[i] = cell
 
     def setCell(self, index, bottom, capacity, ink, water):
@@ -77,11 +78,11 @@ class cellularAutomaton:
     def sumDiffNeighborWater(self, cell):
         result = 0.0
         neighbors = self.connectivityInfo[cell.index]
-        print(cell.index)
+        # print(cell.index)
         for neighborIndex in neighbors:
             neighborCell = self.cells[neighborIndex]
-            print(cell.index)
-            print(neighborCell.index)
+            # print(cell.index)
+            # print(neighborCell.index)
             result += neighborCell.neighborWaterTransfer[cell.index] - cell.neighborWaterTransfer[neighborIndex]
 
         return result
@@ -117,7 +118,10 @@ class cellularAutomaton:
     def waterPropagate(self, root_cell):
         # for cell in self.cells:
         order = self.getPropagationOrder(root_cell)
-        print("order: ",order)
+        print(self.getPropagationOrder(root_cell))
+        # print("order: ",order)
+        largestIdx = 8
+        # for cellIndex in range(largestIdx):
         for cellIndex in order:
             cell = self.cells[cellIndex]
             self.genNeighborWaterTransfer(cell)
@@ -131,6 +135,8 @@ class cellularAutomaton:
 
     def inkPropagate(self, root_cell):
         order = self.getPropagationOrder(root_cell)
+        largestIdx = 8
+        # for cellIndex in range(largestIdx):
         for cellIndex in order:
             cell = self.cells[cellIndex]
             self.genNeighborInkTransfer(cell)
@@ -146,21 +152,45 @@ class cellularAutomaton:
             print("water: ", self.cells[cellIndex].water)
             print("......")
 
-    def retrieveRatio(self):
+    def retrieveInkLevel(self):
         result = []
         for cellIndex in self.cells:
-            result.append(self.cells[cellIndex].ink/self.cells[cellIndex].water)
+            result.append(self.cells[cellIndex].ink)
         return result
+
+    def evaporation(self, depthMap, rate):
+        for i in range(len(depthMap)):
+            for cellIndex in depthMap[i]:
+                self.cells[cellIndex].water -= (len(depthMap) - i) * rate
+                if self.cells[cellIndex].water <= 0:
+                    self.cells[cellIndex].water = 0
+
 
 def main():
     automaton = cellularAutomaton()
     automaton.populateCells()
-    for i in range(1000):
-        automaton.setCell(0, 10000, 100, 1000, 5000)
+    depth = 3
+    for i in range(depth):
+        automaton.setCell(0, 10000, 100, 500, 5000)
         automaton.waterPropagate(automaton.cells[0])
         automaton.inkPropagate(automaton.cells[0])
+
+    depthMap = utilConnectivity.genDepth(0)
+    automaton.evaporation(depthMap, 1000)
+
+
+
+
+    for i in range(depth):
+        automaton.setCell(6, 10000, 100, 500, 5000)
+        automaton.waterPropagate(automaton.cells[6])
+        automaton.inkPropagate(automaton.cells[6])
+
+    depthMap = utilConnectivity.genDepth(6)
+    automaton.evaporation(depthMap,1000)
+
     automaton.printCells()
-    print(automaton.retrieveRatio())
+    print(automaton.retrieveInkLevel())
 
 
 main()
