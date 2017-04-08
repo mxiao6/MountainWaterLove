@@ -1,0 +1,21 @@
+Here is the video that shows us how the Youtuber imports the fbx file to Unity.
+https://www.youtube.com/watch?v=DuEjskXpLt0
+Simply we need to have the following instruction:
+For anyone wondering about a tutorial, I'll try to make one if I can, but the basic steps are:
+
+1) Export from Tilt Brush (go to Labs, then Export). It ends up in My Documents/Tilt Brush
+2) Open a Unity project and import the Tilt Brush Toolkit: https://github.com/googlevr/tilt-brush-toolkit
+3) Import your Tilt Brush .fbx files.
+4) Check out the example scenes from the Toolkit, and try dropping your sketches in instead.﻿
+
+Furthermore, for the Unity SDK package:
+Download everything in the Unity SDK folder and drag it into your project: https://github.com/googlevr/tilt-brush-toolkit/tree/master/UnitySDK﻿
+
+
+2:Second approach
+https://www.youtube.com/watch?v=FZ8vAbPmViU
+
+3: Third Approach
+Sacrifying rendering??:
+https://www.youtube.com/watch?v=KnNhuE-9HuI
+
