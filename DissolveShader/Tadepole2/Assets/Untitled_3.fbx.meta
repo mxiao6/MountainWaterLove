@@ -1,0 +1,117 @@
+fileFormatVersion: 2
+guid: ea3d621adebf540e59c7e09273aa7e7b
+timeCreated: 1492035230
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: DoubleTaperedMarker_geo
+    100002: Flat_geo
+    100004: Ink_geo
+    100006: Marker_geo
+    100008: SoftHighlighter_geo
+    100010: TaperedFlat_geo
+    100012: TaperedMarker_geo
+    100014: //RootNode
+    100016: Wire_geo
+    400000: DoubleTaperedMarker_geo
+    400002: Flat_geo
+    400004: Ink_geo
+    400006: Marker_geo
+    400008: SoftHighlighter_geo
+    400010: TaperedFlat_geo
+    400012: TaperedMarker_geo
+    400014: //RootNode
+    400016: Wire_geo
+    2300000: DoubleTaperedMarker_geo
+    2300002: Flat_geo
+    2300004: Ink_geo
+    2300006: Marker_geo
+    2300008: SoftHighlighter_geo
+    2300010: TaperedFlat_geo
+    2300012: TaperedMarker_geo
+    2300014: Wire_geo
+    3300000: DoubleTaperedMarker_geo
+    3300002: Flat_geo
+    3300004: Ink_geo
+    3300006: Marker_geo
+    3300008: SoftHighlighter_geo
+    3300010: TaperedFlat_geo
+    3300012: TaperedMarker_geo
+    3300014: Wire_geo
+    4300000: TaperedFlat_geo
+    4300002: Marker_geo
+    4300004: Flat_geo
+    4300006: TaperedMarker_geo
+    4300008: Wire_geo
+    4300010: Ink_geo
+    4300012: DoubleTaperedMarker_geo
+    4300014: SoftHighlighter_geo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
