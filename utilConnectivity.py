@@ -27,18 +27,31 @@ def findConnectedVerts(v_index, mesh, connected_verts, marked_edges, maxdepth=1,
 
 
 def gridGen():
-    mesh = bpy.context.object.data
+    print("entered gridGen")
+    # mesh = bpy.context.object.data
+    mesh = None
+    obs = bpy.data.objects
+    for ob in obs:
+        if ob.name == "Cube":
+            # print("found")
+            mesh = ob.data
 
     connected_verts = {}
     marked_edges = []
     grid = {}
     result = []
+    # ctr = 0
+    # for v in mesh.vertices:
+    #     ctr+=1
+    # print(ctr)
     for v in mesh.vertices:
+        # print(ctr)
         findConnectedVerts(v.index, mesh, connected_verts, marked_edges, maxdepth=1)
         #print(",".join([str(v) for v in connected_verts.keys()]))
         grid[v.index] = connected_verts.keys()
         connected_verts = {}
         marked_edges = []
+        # ctr += 1
     return grid
     # connected_verts = {}
     # marked_edges = []
@@ -67,6 +80,7 @@ def gridGen():
     # print(result)
 
 def genOrder(beginningIndex):
+    print("enter genOrder")
     mesh = bpy.context.object.data
 
     previous = {}
@@ -97,6 +111,7 @@ def genOrder(beginningIndex):
 # print(gridGen())
 
 def genDepth(beginningIndex):
+    print("enter genDepth")
     mesh = bpy.context.object.data
 
     previous = {}

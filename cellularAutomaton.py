@@ -19,11 +19,13 @@ class cellularAutomaton:
 
     def __init__(self):
         self.connectivityInfo = utilConnectivity.gridGen()
+        print(self.connectivityInfo)
         self.cells = {}
         self.flowCoeff = 0.2
         self.diffusionCoeff = 0.0
 
     def populateCells(self):
+        print("enter populate")
         for i in range(len(self.connectivityInfo)):
             cell = cellWaterTower.cellWaterTower(10000, 100, i)
             self.cells[i] = cell
@@ -116,32 +118,35 @@ class cellularAutomaton:
 
 
     def waterPropagate(self, root_cell):
+        print("enter waterPropagate")
         # for cell in self.cells:
-        order = self.getPropagationOrder(root_cell)
-        print(self.getPropagationOrder(root_cell))
+        # order = self.getPropagationOrder(root_cell)
+        # print(self.getPropagationOrder(root_cell))
         # print("order: ",order)
         largestIdx = 8
-        # for cellIndex in range(largestIdx):
-        for cellIndex in order:
+        for cellIndex in range(largestIdx):
+        # for cellIndex in order:
             cell = self.cells[cellIndex]
             self.genNeighborWaterTransfer(cell)
             # print(cell.neighborWaterTransfer)
             # print(self.connectivityInfo)
 
-        for cellIndex in order:
+        # for cellIndex in order:
+        for cellIndex in range(largestIdx):
             cell = self.cells[cellIndex]
             cell.water = max(0, cell.water + self.sumDiffNeighborWater(cell))
 
 
     def inkPropagate(self, root_cell):
-        order = self.getPropagationOrder(root_cell)
+        # order = self.getPropagationOrder(root_cell)
         largestIdx = 8
-        # for cellIndex in range(largestIdx):
-        for cellIndex in order:
+        for cellIndex in range(largestIdx):
+        # for cellIndex in order:
             cell = self.cells[cellIndex]
             self.genNeighborInkTransfer(cell)
             self.genInkDiffusionTransfer(cell)
-        for cellIndex in order:
+        # for cellIndex in order:
+        for cellIndex in range(largestIdx):
             cell = self.cells[cellIndex]
             cell.ink = cell.ink + self.sumDiffNeighborInk(cell) + self.sumDiffusion(cell)
 
@@ -175,8 +180,8 @@ def main():
         automaton.waterPropagate(automaton.cells[0])
         automaton.inkPropagate(automaton.cells[0])
 
-    depthMap = utilConnectivity.genDepth(0)
-    automaton.evaporation(depthMap, 1000)
+    # depthMap = utilConnectivity.genDepth(0)
+    # automaton.evaporation(depthMap, 1000)
 
 
 
@@ -186,8 +191,8 @@ def main():
         automaton.waterPropagate(automaton.cells[6])
         automaton.inkPropagate(automaton.cells[6])
 
-    depthMap = utilConnectivity.genDepth(6)
-    automaton.evaporation(depthMap,1000)
+    # depthMap = utilConnectivity.genDepth(6)
+    # automaton.evaporation(depthMap,1000)
 
     automaton.printCells()
     print(automaton.retrieveInkLevel())
