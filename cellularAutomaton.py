@@ -14,18 +14,23 @@ if not dir in sys.path:
 
 import cellWaterTower
 import utilConnectivity
+import random
 
 class cellularAutomaton:
 
     def __init__(self):
         self.connectivityInfo = utilConnectivity.gridGen()
+        print(self.connectivityInfo)
         self.cells = {}
         self.flowCoeff = 0.2
         self.diffusionCoeff = 0.0
 
     def populateCells(self):
+        print("enter populate")
         for i in range(len(self.connectivityInfo)):
-            cell = cellWaterTower.cellWaterTower(10000, 100, i)
+            randBottomRange = random.random()*100-50
+            randCapRange = random.random()*100-50
+            cell = cellWaterTower.cellWaterTower(10000+randBottomRange, 100+randCapRange, i)
             self.cells[i] = cell
 
     def setCell(self, index, bottom, capacity, ink, water):
@@ -116,32 +121,35 @@ class cellularAutomaton:
 
 
     def waterPropagate(self, root_cell):
+        print("enter waterPropagate")
         # for cell in self.cells:
-        order = self.getPropagationOrder(root_cell)
-        print(self.getPropagationOrder(root_cell))
+        # order = self.getPropagationOrder(root_cell)
+        # print(self.getPropagationOrder(root_cell))
         # print("order: ",order)
         largestIdx = 8
-        # for cellIndex in range(largestIdx):
-        for cellIndex in order:
+        for cellIndex in range(largestIdx):
+        # for cellIndex in order:
             cell = self.cells[cellIndex]
             self.genNeighborWaterTransfer(cell)
             # print(cell.neighborWaterTransfer)
             # print(self.connectivityInfo)
 
-        for cellIndex in order:
+        # for cellIndex in order:
+        for cellIndex in range(largestIdx):
             cell = self.cells[cellIndex]
             cell.water = max(0, cell.water + self.sumDiffNeighborWater(cell))
 
 
     def inkPropagate(self, root_cell):
-        order = self.getPropagationOrder(root_cell)
+        # order = self.getPropagationOrder(root_cell)
         largestIdx = 8
-        # for cellIndex in range(largestIdx):
-        for cellIndex in order:
+        for cellIndex in range(largestIdx):
+        # for cellIndex in order:
             cell = self.cells[cellIndex]
             self.genNeighborInkTransfer(cell)
             self.genInkDiffusionTransfer(cell)
-        for cellIndex in order:
+        # for cellIndex in order:
+        for cellIndex in range(largestIdx):
             cell = self.cells[cellIndex]
             cell.ink = cell.ink + self.sumDiffNeighborInk(cell) + self.sumDiffusion(cell)
 
@@ -165,6 +173,14 @@ class cellularAutomaton:
                 if self.cells[cellIndex].water <= 0:
                     self.cells[cellIndex].water = 0
 
+    def retrieveAlphaRatio(self, maxInkLevel):
+        intValues = self.retrieveInkLevel()
+        res = []
+        for item in intValues:
+            res.append(item/maxInkLevel)
+        return res
+
+
 
 def main():
     automaton = cellularAutomaton()
@@ -172,26 +188,36 @@ def main():
     depth = 3
     for i in range(depth):
         automaton.setCell(0, 10000, 100, 500, 5000)
+        automaton.setCell(6, 10000, 100, 500, 5000)
         automaton.waterPropagate(automaton.cells[0])
         automaton.inkPropagate(automaton.cells[0])
 
-    depthMap = utilConnectivity.genDepth(0)
-    automaton.evaporation(depthMap, 1000)
+    # depthMap = utilConnectivity.genDepth(0)
+    # automaton.evaporation(depthMap, 1000)
 
 
 
 
-    for i in range(depth):
-        automaton.setCell(6, 10000, 100, 500, 5000)
+    # for i in range(depth):
+    #     automaton.setCell(6, 10000, 100, 500, 5000)
         automaton.waterPropagate(automaton.cells[6])
         automaton.inkPropagate(automaton.cells[6])
 
     depthMap = utilConnectivity.genDepth(6)
     automaton.evaporation(depthMap,1000)
 
-    automaton.printCells()
+    # automaton.printCells()
     print(automaton.retrieveInkLevel())
+    print(automaton.retrieveAlphaRatio(500))
 
+
+    mesh = None
+    obs = bpy.data.objects
+    for ob in obs:
+        if ob.name == "Cube":
+            # print("found")
+            mesh = ob
+    utilConnectivity.color_vertex(mesh, automaton.retrieveAlphaRatio(500))
 
 main()
 

@@ -27,18 +27,31 @@ def findConnectedVerts(v_index, mesh, connected_verts, marked_edges, maxdepth=1,
 
 
 def gridGen():
-    mesh = bpy.context.object.data
+    print("entered gridGen")
+    # mesh = bpy.context.object.data
+    mesh = None
+    obs = bpy.data.objects
+    for ob in obs:
+        if ob.name == "Cube":
+            # print("found")
+            mesh = ob.data
 
     connected_verts = {}
     marked_edges = []
     grid = {}
     result = []
+    # ctr = 0
+    # for v in mesh.vertices:
+    #     ctr+=1
+    # print(ctr)
     for v in mesh.vertices:
+        # print(ctr)
         findConnectedVerts(v.index, mesh, connected_verts, marked_edges, maxdepth=1)
         #print(",".join([str(v) for v in connected_verts.keys()]))
         grid[v.index] = connected_verts.keys()
         connected_verts = {}
         marked_edges = []
+        # ctr += 1
     return grid
     # connected_verts = {}
     # marked_edges = []
@@ -67,6 +80,7 @@ def gridGen():
     # print(result)
 
 def genOrder(beginningIndex):
+    print("enter genOrder")
     mesh = bpy.context.object.data
 
     previous = {}
@@ -97,6 +111,7 @@ def genOrder(beginningIndex):
 # print(gridGen())
 
 def genDepth(beginningIndex):
+    print("enter genDepth")
     mesh = bpy.context.object.data
 
     previous = {}
@@ -121,3 +136,30 @@ def genDepth(beginningIndex):
     depthDict[0] = [beginningIndex]
     # print(depthDict)
     return depthDict
+
+
+def color_vertex(obj, color):
+    """Paints a single vertex where vert is the index of the vertex
+    and color is a tuple with the RGB values."""
+
+    mesh = obj.data
+    scn = bpy.context.scene
+
+    #check if our mesh already has Vertex Colors, and if not add some... (first we need to make sure it's the active object)
+    scn.objects.active = obj
+    obj.select = True
+    if mesh.vertex_colors:
+        vcol_layer = mesh.vertex_colors.active
+    else:
+        vcol_layer = mesh.vertex_colors.new()
+
+    for poly in mesh.polygons:
+        print(poly.loop_indices)
+        for loop_index in poly.loop_indices:
+            # loop_vert_index = mesh.loops[loop_index].vertex_index
+            # if vert == loop_vert_index:
+            vcol_layer.data[loop_index].color = (0,0,0,color[loop_index])
+
+#example usage
+# color = (1.0, 0.0, 1.0)  # pink
+# color_vertex(bpy.context.scene.objects['Cube'], 1, color)
