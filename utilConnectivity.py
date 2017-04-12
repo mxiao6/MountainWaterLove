@@ -136,3 +136,30 @@ def genDepth(beginningIndex):
     depthDict[0] = [beginningIndex]
     # print(depthDict)
     return depthDict
+
+
+def color_vertex(obj, color):
+    """Paints a single vertex where vert is the index of the vertex
+    and color is a tuple with the RGB values."""
+
+    mesh = obj.data
+    scn = bpy.context.scene
+
+    #check if our mesh already has Vertex Colors, and if not add some... (first we need to make sure it's the active object)
+    scn.objects.active = obj
+    obj.select = True
+    if mesh.vertex_colors:
+        vcol_layer = mesh.vertex_colors.active
+    else:
+        vcol_layer = mesh.vertex_colors.new()
+
+    for poly in mesh.polygons:
+        print(poly.loop_indices)
+        for loop_index in poly.loop_indices:
+            # loop_vert_index = mesh.loops[loop_index].vertex_index
+            # if vert == loop_vert_index:
+            vcol_layer.data[loop_index].color = (0,0,0,color[loop_index])
+
+#example usage
+# color = (1.0, 0.0, 1.0)  # pink
+# color_vertex(bpy.context.scene.objects['Cube'], 1, color)
