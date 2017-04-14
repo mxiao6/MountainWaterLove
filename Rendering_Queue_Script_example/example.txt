@@ -1,0 +1,65 @@
+using UnityEngine;
+using System.Collections;
+
+public class GenerateStimuli : MonoBehaviour {
+    public GameObject redSphere;
+    public GameObject blueSphere_one;
+    public GameObject blueSphere_two;
+    public Camera mainCam;
+    private bool S_activated = false;
+    private float counter;
+    private bool disapper_done = false;
+    private bool appear_done = false;
+    private bool initi_scene = false;
+    // Use this for initialization
+    void Start () {
+        
+	}
+	
+	// Update is called once per frame
+	void Update () {
+      
+        float distance_blue_one = Vector3.Distance(mainCam.transform.position,blueSphere_one.transform.position);
+        float distance_blue_two = Vector3.Distance(mainCam.transform.position, blueSphere_two.transform.position);
+        float distance_red = Vector3.Distance(mainCam.transform.position, redSphere.transform.position);
+        float ratio_one = distance_blue_one / distance_red;
+        float ratio_two = distance_blue_two / distance_red;
+        blueSphere_one.transform.localScale = new Vector3((float)0.5*ratio_one, (float)0.5 * ratio_one, (float)0.5 * ratio_one);
+        blueSphere_two.transform.localScale = new Vector3((float)0.5 * ratio_two, (float)0.5 * ratio_two, (float)0.5 * ratio_two);
+        //print(Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            S_activated = !S_activated;
+            disapper_done = false;
+            initi_scene = true;
+            appear_done = false;
+            counter = 0;
+        }
+        if(S_activated == true && disapper_done == false)
+        {
+            redSphere.GetComponent<MeshRenderer>().enabled = false;
+            counter += Time.deltaTime;
+            if(counter >= 2)
+            {
+                blueSphere_one.GetComponent<MeshRenderer>().enabled = false;
+                blueSphere_two.GetComponent<MeshRenderer>().enabled = false;
+                disapper_done = true;
+            }
+           
+        }
+        if(S_activated == false && appear_done == false && initi_scene == true)
+        {
+            redSphere.GetComponent<MeshRenderer>().enabled = true;
+            counter += Time.deltaTime;
+            if (counter >= 2)
+            {
+               
+                blueSphere_one.GetComponent<MeshRenderer>().enabled = true;
+                blueSphere_two.GetComponent<MeshRenderer>().enabled = true;
+                appear_done = true;
+            }
+        }
+
+    }
+
+}
