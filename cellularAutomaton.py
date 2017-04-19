@@ -161,7 +161,7 @@ class cellularAutomaton:
         intValues = self.retrieveInkLevel()
         res = []
         for item in intValues:
-            res.append(item/max(intValues))
+            res.append(item/(1*max(intValues)))
         return np.array(res)
 
 
@@ -195,6 +195,10 @@ def main():
     # automaton.setCell(2, 9950, 100, 60000, 500000)
     for i in range(250):
         automaton.setCell(i, 10000+random.random()*100-50, 100+random.random()*10-5, 100000+random.random()*5000-5000, 5000000+random.random()*10000-5000)
+    for i in range(600, 1000):
+        automaton.setCell(i, 10000 + random.random() * 100 - 50, 100 + random.random() * 10 - 5,
+                          100000 + random.random() * 5000 - 5000, 5000000 + random.random() * 10000 - 5000)
+
     # automaton.setCell(10, 10000, 100, 400, 5000)
     for i in range(depth):
         automaton.waterPropagate(automaton.cells[5])
