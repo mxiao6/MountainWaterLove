@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Author: Luke
+# @Author: ruian2, kelu2
 # @Date:   2017-04-01 20:55:37
 # @Last Modified by:   Luke
 # @Last Modified time: 2017-04-02 02:11:01
@@ -17,11 +17,7 @@ class cellWaterTower:
         self.neighborWaterTransfer = {}
         self.neighborInkTransfer = {}
         self.inkDiffusionTransfer = {}
-    # def setInk(self, input):
-    #     self.ink = input
 
-    # def setWater(self, input):
-    #     self.water = input
 
     def calcPipeHeight(self, otherCell):
         return max(otherCell.bottom, self.bottom + self.capacity)
