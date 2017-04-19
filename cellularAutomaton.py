@@ -88,6 +88,7 @@ class cellularAutomaton:
         neighbors = self.connectivityInfo[cell.index]
         for neighborIndex in neighbors:
             neighborCell = self.cells[neighborIndex]
+            #print (neighborCell.neighborInkTransfer[cell.index])
             result += neighborCell.neighborWaterTransfer[cell.index] - cell.neighborWaterTransfer[neighborIndex]
         return result
 
@@ -112,7 +113,7 @@ class cellularAutomaton:
 
     def waterPropagate(self, root_cell):
         # print("enter waterPropagate")
-        largestIdx = 8
+        largestIdx = len(self.mesh.vertices)
         for cellIndex in range(largestIdx):
             cell = self.cells[cellIndex]
             self.genNeighborWaterTransfer(cell)
@@ -123,7 +124,7 @@ class cellularAutomaton:
 
 
     def inkPropagate(self, root_cell):
-        largestIdx = 8
+        largestIdx = len(self.mesh.vertices)
         for cellIndex in range(largestIdx):
             cell = self.cells[cellIndex]
             self.genNeighborInkTransfer(cell)
@@ -187,24 +188,33 @@ class cellularAutomaton:
 def main():
     automaton = cellularAutomaton()
     automaton.populateCells()
-    depth = 3
+    depth = 10
+    automaton.setCell(5, 10000, 100, 1000, 5000)
+    automaton.setCell(6, 10000, 100, 1000, 5000)
+    automaton.setCell(1, 10050, 100, 500, 5000)
+    automaton.setCell(2, 9950, 100, 600, 5000)
+    # automaton.setCell(10, 10000, 100, 400, 5000)
     for i in range(depth):
-        automaton.setCell(0, 10000, 100, 500, 5000)
-        automaton.setCell(6, 10000, 100, 500, 5000)
-        automaton.waterPropagate(automaton.cells[0])
-        automaton.inkPropagate(automaton.cells[0])
+        automaton.waterPropagate(automaton.cells[5])
+        automaton.inkPropagate(automaton.cells[5])
 
-        automaton.waterPropagate(automaton.cells[6])
-        automaton.inkPropagate(automaton.cells[6])
+        # automaton.waterPropagate(automaton.cells[11])
+        # automaton.inkPropagate(automaton.cells[11])
+        #
+        # automaton.waterPropagate(automaton.cells[1])
+        # automaton.inkPropagate(automaton.cells[1])
+        #
+        # automaton.waterPropagate(automaton.cells[2])
+        # automaton.inkPropagate(automaton.cells[2])
 
-    depthMap = automaton.genDepth(0, 2)
+    depthMap = automaton.genDepth(0, 3)
     automaton.evaporation(depthMap,1000)
 
     print "ink level:", (automaton.retrieveInkLevel())
     print "alpha values", (automaton.retrieveAlphaRatio(500))
     utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(500))
 
-    utilConnectivity.change_format("testCube.ply", "test.ply")
+    utilConnectivity.change_format("fantasticCube.ply", "fantasticCube.ply")
 
 main()
 

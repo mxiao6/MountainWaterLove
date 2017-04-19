@@ -10,12 +10,13 @@ import numpy as np
 
 def gridGen():
     # print("entered gridGen")
-    mesh = pymesh.load_mesh("testCube.obj")
+    mesh = pymesh.load_mesh("fantasticCube.obj")
     mesh.enable_connectivity()
     grid = {}
-    # print mesh.vertices
+    print mesh.vertices
     for v in range(len(mesh.vertices)):
         grid[v] = list(mesh.get_vertex_adjacent_vertices(int(v)))
+    # print grid
     return grid
 
 
@@ -33,9 +34,11 @@ def color_vertices(obj, alpha):
     vertices_colors = np.zeros(3 * mesh.num_vertices)
     for i in range(mesh.num_vertices):
         vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([235,228,202]), alpha[i])
+        # vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([255,255,255]), alpha[i])
+
     mesh.set_attribute("vertex_color", vertices_colors)
 
-    pymesh.save_mesh("testCube.ply", mesh, "vertex_color", ascii=True)
+    pymesh.save_mesh("fantasticCube.ply", mesh, "vertex_color", ascii=True)
 
 
 def change_format(inputFileName, outputFileName):
@@ -66,7 +69,7 @@ def change_format(inputFileName, outputFileName):
 
 
 def get_mesh():
-    mesh = pymesh.load_mesh("testCube.obj")
+    mesh = pymesh.load_mesh("fantasticCube.obj")
     mesh.enable_connectivity()
     return mesh
 
