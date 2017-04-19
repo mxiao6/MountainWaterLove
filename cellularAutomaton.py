@@ -161,7 +161,7 @@ class cellularAutomaton:
         intValues = self.retrieveInkLevel()
         res = []
         for item in intValues:
-            res.append(item/maxInkLevel)
+            res.append(item/max(intValues))
         return np.array(res)
 
 
@@ -188,11 +188,13 @@ class cellularAutomaton:
 def main():
     automaton = cellularAutomaton()
     automaton.populateCells()
-    depth = 10
-    automaton.setCell(5, 10000, 100, 1000, 5000)
-    automaton.setCell(6, 10000, 100, 1000, 5000)
-    automaton.setCell(1, 10050, 100, 500, 5000)
-    automaton.setCell(2, 9950, 100, 600, 5000)
+    depth = 300
+    # automaton.setCell(5, 10000, 100, 100000, 500000)
+    # automaton.setCell(6, 10000, 100, 100000, 500000)
+    # automaton.setCell(1, 10050, 100, 50000, 500000)
+    # automaton.setCell(2, 9950, 100, 60000, 500000)
+    for i in range(250):
+        automaton.setCell(i, 10000+random.random()*100-50, 100+random.random()*10-5, 100000+random.random()*5000-5000, 5000000+random.random()*10000-5000)
     # automaton.setCell(10, 10000, 100, 400, 5000)
     for i in range(depth):
         automaton.waterPropagate(automaton.cells[5])
@@ -211,10 +213,10 @@ def main():
     automaton.evaporation(depthMap,1000)
 
     print "ink level:", (automaton.retrieveInkLevel())
-    print "alpha values", (automaton.retrieveAlphaRatio(500))
-    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(500))
+    print "alpha values", (automaton.retrieveAlphaRatio(100000))
+    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000))
 
-    utilConnectivity.change_format("fantasticCube.ply", "fantasticCube.ply")
+    utilConnectivity.change_format("teapot.ply", "fantasticTeaPot.ply")
 
 main()
 

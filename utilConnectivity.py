@@ -10,7 +10,7 @@ import numpy as np
 
 def gridGen():
     # print("entered gridGen")
-    mesh = pymesh.load_mesh("fantasticCube.obj")
+    mesh = pymesh.load_mesh("teapot.obj")
     mesh.enable_connectivity()
     grid = {}
     print mesh.vertices
@@ -38,7 +38,7 @@ def color_vertices(obj, alpha):
 
     mesh.set_attribute("vertex_color", vertices_colors)
 
-    pymesh.save_mesh("fantasticCube.ply", mesh, "vertex_color", ascii=True)
+    pymesh.save_mesh("teapot.ply", mesh, "vertex_color", ascii=True)
 
 
 def change_format(inputFileName, outputFileName):
@@ -69,7 +69,7 @@ def change_format(inputFileName, outputFileName):
 
 
 def get_mesh():
-    mesh = pymesh.load_mesh("fantasticCube.obj")
+    mesh = pymesh.load_mesh("teapot.obj")
     mesh.enable_connectivity()
     return mesh
 
