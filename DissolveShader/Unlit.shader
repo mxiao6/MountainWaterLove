@@ -16,11 +16,12 @@ Shader "Brush/Special/Unlit" {
 
 Properties {
     _MainTex ("Texture", 2D) = "white" {}
-    _Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     _NoiseTex ("NoiseTex (R)",2D) = "white"{}
-    _DissolveSpeed ("DissolveSpeed (Second)",Float) = 10.0
     _EdgeWidth("EdgeWidth",Range(0,0.5)) = 0.1
     _EdgeColor("EdgeColor",Color) =  (1,1,1,1)
+    _Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+    _DissolveSpeed ("DissolveSpeed (Second)",Float) = 10.0
+    _StartTime("StartTime (Second)", Float) = 0.0
 }
 
 SubShader {
@@ -37,11 +38,13 @@ SubShader {
         #include "UnityCG.cginc"
 
         sampler2D _MainTex;
-        float _Cutoff;
         uniform sampler2D _NoiseTex;
-        uniform float _DissolveSpeed;
         uniform float _EdgeWidth;
         uniform float4 _EdgeColor;
+
+        float _Cutoff;
+        uniform float _DissolveSpeed;
+        uniform float _StartTime;
 
         struct appdata_t {
             float4 vertex : POSITION;
@@ -68,16 +71,15 @@ SubShader {
 
         fixed4 frag (v2f i) : COLOR
         {  
-            // print(_Time.y);
             float DissolveFactor;
             float noiseValue = tex2D(_NoiseTex, i.texcoord).r;
             if ( _Time.y < 10.0) {
-                DissolveFactor = saturate(_Time.y / _DissolveSpeed);
+                DissolveFactor = saturate((_Time.y - _StartTime) / _DissolveSpeed);
                 if ( noiseValue > DissolveFactor) {
                     discard;
                 }
             } else {
-                DissolveFactor = saturate( (_Time.y - 10.0) / _DissolveSpeed);
+                DissolveFactor = saturate( (_Time.y - _StartTime - 10.0) / _DissolveSpeed);
                 if ( noiseValue <= DissolveFactor ) {
                     discard;
                 }
