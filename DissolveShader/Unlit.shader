@@ -18,7 +18,7 @@ Properties {
     _MainTex ("Texture", 2D) = "white" {}
     _Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     _NoiseTex ("NoiseTex (R)",2D) = "white"{}
-    _DissolveSpeed ("DissolveSpeed (Second)",Float) = 10
+    _DissolveSpeed ("DissolveSpeed (Second)",Float) = 10.0
     _EdgeWidth("EdgeWidth",Range(0,0.5)) = 0.1
     _EdgeColor("EdgeColor",Color) =  (1,1,1,1)
 }
@@ -67,11 +67,20 @@ SubShader {
         }
 
         fixed4 frag (v2f i) : COLOR
-        {
-            float DissolveFactor = saturate(_Time.y / _DissolveSpeed);
+        {  
+            // print(_Time.y);
+            float DissolveFactor;
             float noiseValue = tex2D(_NoiseTex, i.texcoord).r;
-            if(noiseValue <= DissolveFactor) {
-                discard;
+            if ( _Time.y < 10.0) {
+                DissolveFactor = saturate(_Time.y / _DissolveSpeed);
+                if ( noiseValue > DissolveFactor) {
+                    discard;
+                }
+            } else {
+                DissolveFactor = saturate( (_Time.y - 10.0) / _DissolveSpeed);
+                if ( noiseValue <= DissolveFactor ) {
+                    discard;
+                }
             }
 
             fixed4 texColor = tex2D(_MainTex, i.texcoord) * i.color;
