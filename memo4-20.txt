@@ -1,0 +1,12 @@
+Import Note:
+use meshlab to convert obj file into dae file
+use unity to import the dae file, apple vertex color shader to it
+click on the object, then under Model in inspector, click select
+change normals to calculate
+adjust smoothing angle value
+set tangents to split tangents
+
+
+Blender selection note:
+www.dummies.com/web-design-development/selecting-vertices-edges-and-faces-in-blender/
+output selected vertices to txt file

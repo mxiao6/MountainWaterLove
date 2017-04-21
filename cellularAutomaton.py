@@ -11,9 +11,9 @@ import numpy as np
 
 class cellularAutomaton:
 
-    def __init__(self):
-        self.mesh = utilConnectivity.get_mesh()
-        self.connectivityInfo = utilConnectivity.gridGen()
+    def __init__(self, mesh_name):
+        self.mesh = utilConnectivity.get_mesh(mesh_name)
+        self.connectivityInfo = utilConnectivity.gridGen(mesh_name)
         # print(self.connectivityInfo)
         self.cells = {}
         self.flowCoeff = 0.2
@@ -186,7 +186,8 @@ class cellularAutomaton:
 
 
 def main():
-    automaton = cellularAutomaton()
+    mesh_name = "teapot.obj"
+    automaton = cellularAutomaton(mesh_name)
     automaton.populateCells()
     depth = 300
     # automaton.setCell(5, 10000, 100, 100000, 500000)
@@ -218,9 +219,9 @@ def main():
 
     print "ink level:", (automaton.retrieveInkLevel())
     print "alpha values", (automaton.retrieveAlphaRatio(100000))
-    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000))
+    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000), mesh_name)
 
-    utilConnectivity.change_format("teapot.ply", "fantasticTeaPot.ply")
+    utilConnectivity.change_format(mesh_name[0:-4]+".ply", mesh_name[0:-4]+".ply")
 
 main()
 

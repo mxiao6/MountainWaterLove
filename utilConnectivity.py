@@ -8,9 +8,9 @@
 import pymesh
 import numpy as np
 
-def gridGen():
+def gridGen(mesh_name):
     # print("entered gridGen")
-    mesh = pymesh.load_mesh("teapot.obj")
+    mesh = pymesh.load_mesh(mesh_name)
     mesh.enable_connectivity()
     grid = {}
     print mesh.vertices
@@ -28,7 +28,7 @@ def alpha_blending(src, dest, alpha):
     return result
 
 
-def color_vertices(obj, alpha):
+def color_vertices(obj, alpha, mesh_name):
     mesh = obj
     mesh.add_attribute("vertex_color")
     vertices_colors = np.zeros(3 * mesh.num_vertices)
@@ -38,7 +38,7 @@ def color_vertices(obj, alpha):
 
     mesh.set_attribute("vertex_color", vertices_colors)
 
-    pymesh.save_mesh("teapot.ply", mesh, "vertex_color", ascii=True)
+    pymesh.save_mesh(mesh_name[:-4]+".ply", mesh, "vertex_color", ascii=True)
 
 
 def change_format(inputFileName, outputFileName):
@@ -68,8 +68,8 @@ def change_format(inputFileName, outputFileName):
     file.close()
 
 
-def get_mesh():
-    mesh = pymesh.load_mesh("teapot.obj")
+def get_mesh(mesh_name):
+    mesh = pymesh.load_mesh(mesh_name)
     mesh.enable_connectivity()
     return mesh
 
