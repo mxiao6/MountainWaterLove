@@ -14,6 +14,7 @@ def gridGen(mesh_name):
     mesh.enable_connectivity()
     grid = {}
     print mesh.vertices
+    # print(len(mesh.vertices))
     for v in range(len(mesh.vertices)):
         grid[v] = list(mesh.get_vertex_adjacent_vertices(int(v)))
     # print grid
@@ -33,7 +34,11 @@ def color_vertices(obj, alpha, mesh_name):
     mesh.add_attribute("vertex_color")
     vertices_colors = np.zeros(3 * mesh.num_vertices)
     for i in range(mesh.num_vertices):
-        vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([235,228,202]), alpha[i])
+        vertices_colors[0 + 3 * i] = 252
+        vertices_colors[1 + 3 * i] = 203
+        vertices_colors[2 + 3 * i] = 225
+    for i in range(mesh.num_vertices):
+        vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([251, 247, 240]), alpha[i])
         # vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([255,255,255]), alpha[i])
 
     mesh.set_attribute("vertex_color", vertices_colors)
