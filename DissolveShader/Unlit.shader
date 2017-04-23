@@ -22,6 +22,7 @@ Properties {
     _Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     _DissolveSpeed ("DissolveSpeed (Second)",Float) = 10.0
     _StartTime("StartTime (Second)", Float) = 0.0
+    _Duration("Duration (Second)", Float) = 10.0
 }
 
 SubShader {
@@ -45,6 +46,7 @@ SubShader {
         float _Cutoff;
         uniform float _DissolveSpeed;
         uniform float _StartTime;
+        uniform float _Duration;
 
         struct appdata_t {
             float4 vertex : POSITION;
@@ -73,13 +75,13 @@ SubShader {
         {  
             float DissolveFactor;
             float noiseValue = tex2D(_NoiseTex, i.texcoord).r;
-            if ( _Time.y < 10.0) {
+            if ( _Time.y < _Duration) {
                 DissolveFactor = saturate((_Time.y - _StartTime) / _DissolveSpeed);
                 if ( noiseValue > DissolveFactor) {
                     discard;
                 }
             } else {
-                DissolveFactor = saturate( (_Time.y - _StartTime - 10.0) / _DissolveSpeed);
+                DissolveFactor = saturate( (_Time.y - _StartTime - _Duration) / _DissolveSpeed);
                 if ( noiseValue <= DissolveFactor ) {
                     discard;
                 }
