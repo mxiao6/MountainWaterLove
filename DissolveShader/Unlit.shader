@@ -75,7 +75,7 @@ SubShader {
         {  
             float DissolveFactor;
             float noiseValue = tex2D(_NoiseTex, i.texcoord).r;
-            if ( _Time.y < _Duration) {
+            if ( _Time.y < (_StartTime + _Duration)) {
                 DissolveFactor = saturate((_Time.y - _StartTime) / _DissolveSpeed);
                 if ( noiseValue > DissolveFactor) {
                     discard;
