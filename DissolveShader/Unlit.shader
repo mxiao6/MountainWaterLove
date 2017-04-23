@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-Shader "Brush/Special/Unlit" {
+Shader "Brush/Unlit" {
 
 Properties {
     _MainTex ("Texture", 2D) = "white" {}
