@@ -8,12 +8,13 @@
 import pymesh
 import numpy as np
 
-def gridGen():
+def gridGen(mesh_name):
     # print("entered gridGen")
-    mesh = pymesh.load_mesh("teapot.obj")
+    mesh = pymesh.load_mesh(mesh_name)
     mesh.enable_connectivity()
     grid = {}
     print mesh.vertices
+    # print(len(mesh.vertices))
     for v in range(len(mesh.vertices)):
         grid[v] = list(mesh.get_vertex_adjacent_vertices(int(v)))
     # print grid
@@ -28,17 +29,21 @@ def alpha_blending(src, dest, alpha):
     return result
 
 
-def color_vertices(obj, alpha):
+def color_vertices(obj, alpha, mesh_name):
     mesh = obj
     mesh.add_attribute("vertex_color")
     vertices_colors = np.zeros(3 * mesh.num_vertices)
     for i in range(mesh.num_vertices):
-        vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([235,228,202]), alpha[i])
+        vertices_colors[0 + 3 * i] = 252
+        vertices_colors[1 + 3 * i] = 203
+        vertices_colors[2 + 3 * i] = 225
+    for i in range(mesh.num_vertices):
+        vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([251, 247, 240]), alpha[i])
         # vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([255,255,255]), alpha[i])
 
     mesh.set_attribute("vertex_color", vertices_colors)
 
-    pymesh.save_mesh("teapot.ply", mesh, "vertex_color", ascii=True)
+    pymesh.save_mesh(mesh_name[:-4]+".ply", mesh, "vertex_color", ascii=True)
 
 
 def change_format(inputFileName, outputFileName):
@@ -68,8 +73,8 @@ def change_format(inputFileName, outputFileName):
     file.close()
 
 
-def get_mesh():
-    mesh = pymesh.load_mesh("teapot.obj")
+def get_mesh(mesh_name):
+    mesh = pymesh.load_mesh(mesh_name)
     mesh.enable_connectivity()
     return mesh
 

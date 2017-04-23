@@ -11,9 +11,9 @@ import numpy as np
 
 class cellularAutomaton:
 
-    def __init__(self):
-        self.mesh = utilConnectivity.get_mesh()
-        self.connectivityInfo = utilConnectivity.gridGen()
+    def __init__(self, mesh_name):
+        self.mesh = utilConnectivity.get_mesh(mesh_name)
+        self.connectivityInfo = utilConnectivity.gridGen(mesh_name)
         # print(self.connectivityInfo)
         self.cells = {}
         self.flowCoeff = 0.2
@@ -30,6 +30,7 @@ class cellularAutomaton:
 
 
     def setCell(self, index, bottom, capacity, ink, water):
+        # print(len(self.cells))
         cell = self.cells[index]
         cell.bottom = bottom
         cell.capacity = capacity
@@ -161,7 +162,10 @@ class cellularAutomaton:
         intValues = self.retrieveInkLevel()
         res = []
         for item in intValues:
-            res.append(item/(1*max(intValues)))
+            if item == 0:
+                res.append(0)
+            else:
+                res.append(item/(1*max(intValues)))
         return np.array(res)
 
 
@@ -186,18 +190,23 @@ class cellularAutomaton:
 
 
 def main():
-    automaton = cellularAutomaton()
+    mesh_name = "triangleLotus.obj"
+    automaton = cellularAutomaton(mesh_name)
     automaton.populateCells()
-    depth = 300
+    depth = 50
     # automaton.setCell(5, 10000, 100, 100000, 500000)
     # automaton.setCell(6, 10000, 100, 100000, 500000)
     # automaton.setCell(1, 10050, 100, 50000, 500000)
     # automaton.setCell(2, 9950, 100, 60000, 500000)
-    for i in range(250):
-        automaton.setCell(i, 10000+random.random()*100-50, 100+random.random()*10-5, 100000+random.random()*5000-5000, 5000000+random.random()*10000-5000)
-    for i in range(600, 1000):
-        automaton.setCell(i, 10000 + random.random() * 100 - 50, 100 + random.random() * 10 - 5,
-                          100000 + random.random() * 5000 - 5000, 5000000 + random.random() * 10000 - 5000)
+    # for i in range(250):
+    #     automaton.setCell(i, 10000+random.random()*100-50, 100+random.random()*10-5, 100000+random.random()*5000-5000, 5000000+random.random()*10000-5000)
+    # for i in range(600, 1000):
+    #     automaton.setCell(i, 10000 + random.random() * 100 - 50, 100 + random.random() * 10 - 5,
+    #                       100000 + random.random() * 5000 - 5000, 5000000 + random.random() * 10000 - 5000)
+
+    vertex_file = open("/Users/Luke/Desktop/test.txt")
+    for vertex in vertex_file:
+        automaton.setCell(int(vertex), 10000, 100, 10000, 50000)
 
     # automaton.setCell(10, 10000, 100, 400, 5000)
     for i in range(depth):
@@ -218,9 +227,9 @@ def main():
 
     print "ink level:", (automaton.retrieveInkLevel())
     print "alpha values", (automaton.retrieveAlphaRatio(100000))
-    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000))
+    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000), mesh_name)
 
-    utilConnectivity.change_format("teapot.ply", "fantasticTeaPot.ply")
+    utilConnectivity.change_format(mesh_name[0:-4]+".ply", mesh_name[0:-4]+".ply")
 
 main()
 
