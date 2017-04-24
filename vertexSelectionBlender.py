@@ -5,8 +5,10 @@
 # @Last Modified time: 2017-04-21 19:57:20
 
 import bpy
+import os
 
-file_name = "/Users/Luke/Desktop/test.txt"
+# file_name = "/Users/Luke/Desktop/test.txt"
+file_name = os.path.expanduser('~')+"/Desktop/Tadpoles/test.txt"
 
 mode = bpy.context.active_object.mode
 # we need to switch from Edit mode to Object mode so the selection gets updated

@@ -8,6 +8,7 @@ import cellWaterTower
 import utilConnectivity
 import random
 import numpy as np
+import os
 
 class cellularAutomaton:
 
@@ -204,7 +205,8 @@ def main():
     #     automaton.setCell(i, 10000 + random.random() * 100 - 50, 100 + random.random() * 10 - 5,
     #                       100000 + random.random() * 5000 - 5000, 5000000 + random.random() * 10000 - 5000)
 
-    vertex_file = open("/Users/Luke/Desktop/test.txt")
+    # vertex_file = open("/Users/Luke/Desktop/test.txt")
+    vertex_file = open(os.path.expanduser('~')+"/Desktop/Tadpoles/test.txt")
     for vertex in vertex_file:
         automaton.setCell(int(vertex), 10000, 100, 10000, 50000)
 
