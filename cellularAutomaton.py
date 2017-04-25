@@ -9,6 +9,7 @@ import utilConnectivity
 import random
 import numpy as np
 import os
+import pymesh
 
 class cellularAutomaton:
 
@@ -191,46 +192,32 @@ class cellularAutomaton:
 
 
 def main():
-    mesh_name = "triangleLotus.obj"
+    #TODO:Change this name to the obj file name you want to import
+    #TODO Type in here how many segments that you want to color
+    numberofSegments = 2
+    mesh_name = "teapot.obj"
     automaton = cellularAutomaton(mesh_name)
     automaton.populateCells()
-    depth = 50
-    # automaton.setCell(5, 10000, 100, 100000, 500000)
-    # automaton.setCell(6, 10000, 100, 100000, 500000)
-    # automaton.setCell(1, 10050, 100, 50000, 500000)
-    # automaton.setCell(2, 9950, 100, 60000, 500000)
-    # for i in range(250):
-    #     automaton.setCell(i, 10000+random.random()*100-50, 100+random.random()*10-5, 100000+random.random()*5000-5000, 5000000+random.random()*10000-5000)
-    # for i in range(600, 1000):
-    #     automaton.setCell(i, 10000 + random.random() * 100 - 50, 100 + random.random() * 10 - 5,
-    #                       100000 + random.random() * 5000 - 5000, 5000000 + random.random() * 10000 - 5000)
+    depth = 25
 
-    # vertex_file = open("/Users/Luke/Desktop/test.txt")
-    vertex_file = open(os.path.expanduser('~')+"/Desktop/Tadpoles/test.txt")
-    for vertex in vertex_file:
-        automaton.setCell(int(vertex), 10000, 100, 10000, 50000)
+    for i in range(numberofSegments):
+        vertex_file = open(os.path.expanduser('~')+"/Desktop/Tadpoles/test" +str(i+1)+".txt")
+        for vertex in vertex_file:
+            automaton.setCell(int(vertex), 10000, 100, 10000, 50000)
 
-    # automaton.setCell(10, 10000, 100, 400, 5000)
-    for i in range(depth):
-        automaton.waterPropagate(automaton.cells[5])
-        automaton.inkPropagate(automaton.cells[5])
+        # automaton.setCell(10, 10000, 100, 400, 5000)
+        for j in range(depth):
+            automaton.waterPropagate(automaton.cells[5])
+            automaton.inkPropagate(automaton.cells[5])
 
-        # automaton.waterPropagate(automaton.cells[11])
-        # automaton.inkPropagate(automaton.cells[11])
-        #
-        # automaton.waterPropagate(automaton.cells[1])
-        # automaton.inkPropagate(automaton.cells[1])
-        #
-        # automaton.waterPropagate(automaton.cells[2])
-        # automaton.inkPropagate(automaton.cells[2])
+        depthMap = automaton.genDepth(0, 3)
+        automaton.evaporation(depthMap,1000)
 
-    depthMap = automaton.genDepth(0, 3)
-    automaton.evaporation(depthMap,1000)
+        print "ink level:", (automaton.retrieveInkLevel()[-20:-1])
+        print "alpha values", (automaton.retrieveAlphaRatio(100000)[-20:-1])
+        utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000), mesh_name, i+1)
 
-    print "ink level:", (automaton.retrieveInkLevel())
-    print "alpha values", (automaton.retrieveAlphaRatio(100000))
-    utilConnectivity.color_vertices(automaton.mesh, automaton.retrieveAlphaRatio(100000), mesh_name)
-
+    pymesh.save_mesh(mesh_name[:-4]+".ply", automaton.mesh, "vertex_color", ascii=True)
     utilConnectivity.change_format(mesh_name[0:-4]+".ply", mesh_name[0:-4]+".ply")
 
 main()

@@ -7,21 +7,18 @@
 
 import pymesh
 import numpy as np
+import csv
 
-redVal = 252
-greenVal = 203
-blueVal = 225
+#TODO You also need to update the colors in the csv color, each row corresponds to the color you want fill to that segment
+#TODO The default fine name is colorscheme.csv
 
 def gridGen(mesh_name):
-    # print("entered gridGen")
     mesh = pymesh.load_mesh(mesh_name)
     mesh.enable_connectivity()
     grid = {}
-    print mesh.vertices
-    # print(len(mesh.vertices))
+    # print mesh.vertices
     for v in range(len(mesh.vertices)):
         grid[v] = list(mesh.get_vertex_adjacent_vertices(int(v)))
-    # print grid
     return grid
 
 
@@ -33,21 +30,37 @@ def alpha_blending(src, dest, alpha):
     return result
 
 
-def color_vertices(obj, alpha, mesh_name):
+def color_vertices(obj, alpha, mesh_name, seg_number):
     mesh = obj
-    mesh.add_attribute("vertex_color")
-    vertices_colors = np.zeros(3 * mesh.num_vertices)
+    vertices_colors = mesh.get_attribute("vertex_color")
+    counter = 0
+    redVal = 0
+    greenVal = 0
+    blueVal = 0
+    f = open("colorscheme.csv", "r")
+    color_csv = csv.reader(f)
+    print "the fucking shit is " + str(seg_number)
+    for row in color_csv:
+        print counter
+        print seg_number
+        if seg_number-1 == counter:
+            redVal = row[0]
+            blueVal = row[1]
+            greenVal = row[2]
+            print redVal
+            print blueVal
+            print greenVal
+        counter += 1
+
     for i in range(mesh.num_vertices):
-        vertices_colors[0 + 3 * i] = redVal
-        vertices_colors[1 + 3 * i] = greenVal
-        vertices_colors[2 + 3 * i] = blueVal
-    for i in range(mesh.num_vertices):
-        vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([251, 247, 240]), alpha[i])
+        if(np.array_equal(vertices_colors[i*3: i*3+3], np.array([251,247,240]))):
+            vertices_colors[0 + 3 * i] = redVal
+            vertices_colors[1 + 3 * i] = greenVal
+            vertices_colors[2 + 3 * i] = blueVal
+            vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([251, 247, 240]), alpha[i])
         # vertices_colors[i*3: i*3+3] = alpha_blending(vertices_colors[i*3: i*3+3], np.array([255,255,255]), alpha[i])
-
     mesh.set_attribute("vertex_color", vertices_colors)
-
-    pymesh.save_mesh(mesh_name[:-4]+".ply", mesh, "vertex_color", ascii=True)
+    f.close()
 
 
 def change_format(inputFileName, outputFileName):
@@ -68,9 +81,6 @@ def change_format(inputFileName, outputFileName):
         new_line = " ".join(line_list)
         del lines[i]
         lines.insert(i, new_line)
-    # print lines[13:13+num_vertices]
-    # print num_vertices
-    # print lines
     file = open(outputFileName, "w")
     for line in lines:
         file.write(line)
@@ -80,5 +90,11 @@ def change_format(inputFileName, outputFileName):
 def get_mesh(mesh_name):
     mesh = pymesh.load_mesh(mesh_name)
     mesh.enable_connectivity()
+    # vertex color should be the initiated first to ensure multiple times coloring for the same model
+    mesh.add_attribute("vertex_color")
+    vertices_colors = np.zeros(3*mesh.num_vertices)
+    for i in range(mesh.num_vertices):
+        vertices_colors[i*3: i*3+3] = np.array([251,247,240])
+    mesh.set_attribute("vertex_color", vertices_colors)
     return mesh
 
