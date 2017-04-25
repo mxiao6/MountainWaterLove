@@ -8,7 +8,10 @@ import bpy
 import os
 
 # file_name = "/Users/Luke/Desktop/test.txt"
-file_name = os.path.expanduser('~')+"/Desktop/Tadpoles/test.txt"
+
+#TODO: put how many segments you put in the drawing
+seg_number = 1
+file_name = os.path.expanduser('~')+"/Desktop/Tadpoles/test+"+str(seg_number)+".txt"
 
 mode = bpy.context.active_object.mode
 # we need to switch from Edit mode to Object mode so the selection gets updated
