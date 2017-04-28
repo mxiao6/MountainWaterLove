@@ -1,0 +1,47 @@
+using UnityEngine;
+using System.Collections;
+
+public class LightControl : MonoBehaviour {
+    public Light environment_light;
+    public float target_intensity;
+    public float Light_Starting_Time;
+    public float To_Max_Intensity_Duration;
+    public float Light_Decay_Time;
+    public float Light_Decay_Duration;
+    private float light_step;
+    private float decay_step;
+    private double counter;
+    private double scene_running_time;
+    private bool Light_Increase_Complete;
+    // Use this for initialization
+    void Start() {
+        environment_light = GetComponent<Light>();
+        environment_light.intensity = 0;
+        light_step = target_intensity / To_Max_Intensity_Duration;
+        decay_step = target_intensity / Light_Decay_Duration;
+        scene_running_time = 0;
+        Light_Increase_Complete = false;
+    }
+
+	
+	// Update is called once per frame
+	void Update () {
+        scene_running_time += Time.deltaTime;
+   
+       
+        if(scene_running_time >= Light_Starting_Time && environment_light.intensity <= target_intensity&& !Light_Increase_Complete)
+        {
+            environment_light.intensity += light_step*Time.deltaTime;
+        }
+        
+        if(environment_light.intensity >= target_intensity)
+        {
+            Light_Increase_Complete = true;
+        }
+        if(scene_running_time >= Light_Decay_Time && environment_light.intensity > 0 && Light_Increase_Complete)
+        {
+            environment_light.intensity -= decay_step*Time.deltaTime;
+           //  print("decay_step:" + decay_step);
+        }
+    }
+}
