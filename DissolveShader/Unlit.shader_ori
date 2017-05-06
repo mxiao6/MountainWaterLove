@@ -12,17 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-Shader "Brush/Unlit" {
+Shader "Brush/Special/Unlit" {
 
 Properties {
     _MainTex ("Texture", 2D) = "white" {}
     _Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
-    _NoiseTex ("NoiseTex (R)",2D) = "white"{}
-    _EdgeWidth("EdgeWidth",Range(0,0.5)) = 0.1
-    _EdgeColor("EdgeColor",Color) =  (1,1,1,1)
-    _DissolveSpeed ("DissolveSpeed (Second)",Float) = 10.0
-    _StartTime("StartTime (Second)", Float) = 0.0
-    _Duration("Duration (Second)", Float) = 10.0
+
 }
 
 SubShader {
@@ -36,17 +31,9 @@ SubShader {
         #pragma vertex vert
         #pragma fragment frag
 		#include "../../../Shaders/Brush.cginc"
-        #include "UnityCG.cginc"
 
         sampler2D _MainTex;
-        uniform sampler2D _NoiseTex;
-        uniform float _EdgeWidth;
-        uniform float4 _EdgeColor;
-
         float _Cutoff;
-        uniform float _DissolveSpeed;
-        uniform float _StartTime;
-        uniform float _Duration;
 
         struct appdata_t {
             float4 vertex : POSITION;
@@ -72,40 +59,20 @@ SubShader {
         }
 
         fixed4 frag (v2f i) : COLOR
-        {  
-            float DissolveFactor;
-            float noiseValue = tex2D(_NoiseTex, i.texcoord).r;
-            if ( _Time.y < (_StartTime + _Duration)) {
-                DissolveFactor = saturate((_Time.y - _StartTime) / _DissolveSpeed);
-                if ( noiseValue > DissolveFactor) {
-                    discard;
-                }
-            } else {
-                DissolveFactor = saturate( (_Time.y - _StartTime - _Duration) / _DissolveSpeed);
-                if ( noiseValue <= DissolveFactor ) {
-                    discard;
-                }
-            }
-
-            fixed4 texColor = tex2D(_MainTex, i.texcoord) * i.color;
-            // float4 texColor = tex2D(_MainTex, i.uv);
-            if (texColor.a < _Cutoff) {
+        {
+            fixed4 c;
+            c = tex2D(_MainTex, i.texcoord) * i.color;
+            if (c.a < _Cutoff) {
                 discard;
             }
-            texColor.a = 1;
-            float EdgeFactor = saturate((noiseValue - DissolveFactor)/(_EdgeWidth*DissolveFactor));
-            float4 BlendColor = texColor * _EdgeColor;
-
-            return lerp(texColor, BlendColor, 1 - EdgeFactor);
-            // return texColor;              
-
+            c.a = 1;
+            return c;
         }
 
         ENDCG
     }
 }
 
- Fallback "Unlit/Diffuse"
-//Fallback off
+Fallback "Unlit/Diffuse"
 
 }
