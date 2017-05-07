@@ -2,7 +2,7 @@
 # @Author: ruian2, kelu2
 # @Date:   2017-04-01 21:34:40
 # @Last Modified by:   Luke
-# @Last Modified time: 2017-04-23 22:29:37
+# @Last Modified time: 2017-05-07 00:03:39
 # import bpy
 
 import pymesh
@@ -53,7 +53,7 @@ def color_vertices(obj, alpha, mesh_name, seg_number):
         counter += 1
 
     for i in range(mesh.num_vertices):
-        if(np.array_equal(vertices_colors[i*3: i*3+3], np.array([251,247,240]))):
+        if(np.array_equal(vertices_colors[i*3: i*3+3], np.array([246,245,240]))):
             vertices_colors[0 + 3 * i] = redVal
             vertices_colors[1 + 3 * i] = greenVal
             vertices_colors[2 + 3 * i] = blueVal
