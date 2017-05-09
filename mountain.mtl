@@ -1,0 +1,50 @@
+# Blender MTL File: 'untitled.blend'
+# Material Count: 4
+
+newmtl Ink
+Ns 94.117647
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 9
+map_Kd Scene1_Mountain/Ink.png
+map_d Scene1_Mountain/Ink.png
+
+newmtl Marker
+Ns 94.117647
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 9
+map_Kd Scene1_Mountain/Marker.png
+map_d Scene1_Mountain/Marker.png
+
+newmtl TaperedMarker
+Ns 94.117647
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 9
+map_Kd Scene1_Mountain/TaperedMarker.png
+map_d Scene1_Mountain/TaperedMarker.png
+
+newmtl ThickPaint
+Ns 94.117647
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 9
+map_Kd Scene1_Mountain/ThickPaint.png
+map_d Scene1_Mountain/ThickPaint.png
