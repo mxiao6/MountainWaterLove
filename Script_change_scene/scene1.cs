@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Start : MonoBehaviour {
+public class scene1 : MonoBehaviour {
 	private float endTime;
 	public float duration;
-	void Start() {
+	void Start () {
 		endTime = Time.time + duration;
 	}
 	
 	void Update () {
-		if ( Time.time <= endTime ) {
+		if ( Time.time >= endTime ) {
 			Application.LoadLevel("s2");
 		}
 	}
