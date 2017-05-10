@@ -2,7 +2,7 @@
 # @Author: ruian2, kelu2
 # @Date:   2017-04-01 21:13:20
 # @Last Modified by:   Luke
-# @Last Modified time: 2017-04-02 04:03:04
+# @Last Modified time: 2017-05-10 04:40:21
 
 import cellWaterTower
 import utilConnectivity
@@ -201,7 +201,7 @@ def main():
     depth = 25
 
     for i in range(numberofSegments):
-        vertex_file = open(os.path.expanduser('~')+"/Desktop/Tadpoles/test" +str(i+1)+".txt")
+        vertex_file = open(os.path.expanduser('~')+"/Desktop/VR_Project/test" +str(i+1)+".txt")
         for vertex in vertex_file:
             automaton.setCell(int(vertex), 10000, 100, 10000, 50000)
 
