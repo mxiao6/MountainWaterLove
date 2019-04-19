@@ -39,7 +39,6 @@ def color_vertices(obj, alpha, mesh_name, seg_number):
     blueVal = 0
     f = open("colorscheme.csv", "r")
     color_csv = csv.reader(f)
-    print "the fucking shit is " + str(seg_number)
     for row in color_csv:
         print counter
         print seg_number

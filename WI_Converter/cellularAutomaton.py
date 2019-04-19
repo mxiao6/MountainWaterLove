@@ -197,6 +197,7 @@ def main():
     mesh_name = "teapot.obj"
     automaton = cellularAutomaton(mesh_name)
     automaton.populateCells()
+
     depth = 25
 
     for i in range(numberofSegments):

@@ -21,7 +21,6 @@ class cellularAutomaton:
         self.flowCoeff = 0.2
         self.diffusionCoeff = 0.0
 
-
     def populateCells(self):
         # print("enter populate")
         for i in range(len(self.connectivityInfo)):
